@@ -42,20 +42,23 @@ const Navigation = () => {
           >
             {<Avatar alt="user" img={user?.photoURL} rounded={true} />}
           </Tooltip>
-          {user?.uid ? (
-            <Button onClick={handleSignOut} className="ms-4" color="light">
-              Sign Out
-            </Button>
-          ) : (
-            <>
-              <Button className="ms-2" color="light">
-                <Link to="/login">Sign in</Link>
+          <div>
+            {user?.uid ? (
+              <Button onClick={handleSignOut} className="ms-4" color="light">
+                Sign Out
               </Button>
-              <Button className="ms-2" color="light">
-                <Link to="/register">Register</Link>
-              </Button>
-            </>
-          )}
+            ) : (
+              <>
+                <Button className="ms-2" color="light">
+                  <Link to="/login">Sign in</Link>
+                </Button>
+                <Button className="ms-2" color="light">
+                  <Link to="/register">Register</Link>
+                </Button>
+              </>
+            )}
+          </div>
+          <Navbar.Toggle />
         </div>
         <Navbar.Collapse>
           <NavLink as={Link} to="/" active={true}>
