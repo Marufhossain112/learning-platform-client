@@ -1,21 +1,9 @@
 import { Avatar, Button, Dropdown, Navbar, Tooltip } from "flowbite-react";
-import React, { useContext } from "react";
+import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import { AuthContext } from "../../context/UserContext";
-import "./Navigation.css"
 
 const Navigation = () => {
-  const { user, logOut } = useContext(AuthContext);
-  console.log(user);
-  const handleSignOut = () => {
-    logOut()
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+
   return (
     <div>
       <Navbar  fluid={true} rounded={true}>
@@ -33,9 +21,9 @@ const Navigation = () => {
           <Tooltip
             content={
               <div>
-                <span className="block text-sm">{user?.displayName}</span>
+                <span className="block text-sm">{}</span>
                 <span className="block truncate text-sm font-medium">
-                {user?.email}
+                {}
                 </span>
               </div>
             }
@@ -44,7 +32,7 @@ const Navigation = () => {
             {
               <Avatar
                 alt="User settings"
-                img={user?.photoURL}
+                // img={}
                 rounded={true}
               />
             }
