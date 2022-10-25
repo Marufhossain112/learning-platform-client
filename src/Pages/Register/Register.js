@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const googleProvider = new GoogleAuthProvider();
 const githubProvider = new FacebookAuthProvider();
 const Register = () => {
-  const { popupSignIn } = useContext(AuthContext);
+  const { popupSignIn, signUp } = useContext(AuthContext);
   const googleHandleLogin = () => {
     // console.log("I am clicked");
     popupSignIn(googleProvider)
@@ -31,27 +31,57 @@ const Register = () => {
         console.error(error);
       });
   };
+  const handleForm = (event) => {
+    event.preventDefault();
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    console.log(email, password);
+    signUp(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
   return (
     <div>
-      <form className="flex flex-col gap-4 w-1/2 mx-auto">
+      <form onSubmit={handleForm} className="flex flex-col gap-4 w-1/2 mx-auto">
         <div>
           <div className="mb-2 block">
-            <Label htmlFor="email2" value="Your email" />
+            <Label htmlFor="name2" value="Your Fullname" />
           </div>
           <TextInput
-            id="email2"
-            type="email"
-            placeholder="name@flowbite.com"
+            id="name2"
+            name="name"
+            type="text"
+            placeholder="Your name"
             required={true}
             shadow={true}
           />
         </div>
         <div>
           <div className="mb-2 block">
+            <Label htmlFor="email2" value="Your email" />
+          </div>
+          <TextInput
+            id="email2"
+            name="email"
+            type="email"
+            placeholder="name@flowbite.com"
+            required={true}
+            shadow={true}
+          />
+        </div>
+
+        <div>
+          <div className="mb-2 block">
             <Label htmlFor="password2" value="Your password" />
           </div>
           <TextInput
             id="password2"
+            name="password"
             type="password"
             required={true}
             shadow={true}
@@ -63,6 +93,7 @@ const Register = () => {
           </div>
           <TextInput
             id="repeat-password"
+            name="repeat-password"
             type="password"
             required={true}
             shadow={true}
