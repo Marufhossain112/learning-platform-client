@@ -82,9 +82,13 @@ const Register = () => {
         </div>
         <Button type="submit">Register</Button>
       </form>
-      {/* <div className="mx-auto">
-        Already have an account , <Link to="/login">Login</Link>
-      </div> */}
+      <div className="mt-3 text-center">
+        Already have an account ?{" "}
+        <Link className="text-blue-600 font-bold" to="/login">
+          Login
+        </Link>{" "}
+        here
+      </div>
       <Button
         onClick={googleHandleLogin}
         className="mx-auto mt-3"

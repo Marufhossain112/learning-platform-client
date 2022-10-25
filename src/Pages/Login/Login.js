@@ -4,6 +4,7 @@ import React, { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { AuthContext } from "../../context/UserContext";
+import { Link } from "react-router-dom";
 const Login = () => {
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
@@ -57,20 +58,15 @@ const Login = () => {
           />
         </div>
 
-        <div className="flex items-center gap-2">
-          <Checkbox id="agree" />
-          <Label htmlFor="agree">
-            I agree with the{" "}
-            <a
-              href="/forms"
-              className="text-blue-600 hover:underline dark:text-blue-500"
-            >
-              terms and conditions
-            </a>
-          </Label>
-        </div>
         <Button type="submit">Login</Button>
       </form>
+      <div className="mt-3 text-center">
+        New member ?{" "}
+        <Link className="text-blue-600 font-bold" to="/register">
+          Register
+        </Link>{" "}
+        here
+      </div>
       <Button
         onClick={googleHandleLogin}
         className="mx-auto mt-3"
