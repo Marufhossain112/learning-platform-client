@@ -2,11 +2,11 @@ import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 import React, { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
-import {  FaGithub } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 import { AuthContext } from "../../context/UserContext";
-const googleProvider = new GoogleAuthProvider();
-const githubProvider = new GithubAuthProvider();
 const Login = () => {
+  const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
   const { popupSignIn } = useContext(AuthContext);
   const googleHandleLogin = () => {
     // console.log("I am clicked");
@@ -52,7 +52,7 @@ const Login = () => {
           <TextInput
             id="password2"
             type="password"
-            required={true}
+        required={true}
             shadow={true}
           />
         </div>
