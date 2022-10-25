@@ -52,7 +52,7 @@ const Login = () => {
           <TextInput
             id="password2"
             type="password"
-        required={true}
+            required={true}
             shadow={true}
           />
         </div>
@@ -77,7 +77,11 @@ const Login = () => {
         outline={true}
         gradientDuoTone="greenToBlue"
       >
-        <FcGoogle className="me-2" /> Sign in with Google
+        <span>
+          {" "}
+          <FcGoogle style={{ fontSize: "22px" }} />
+        </span>
+        <span style={{ marginLeft: "5px" }}> Sign in with Google</span>
       </Button>
       <Button
         onClick={githubHandleLogin}
@@ -85,7 +89,10 @@ const Login = () => {
         outline={true}
         gradientDuoTone="greenToBlue"
       >
-        <FaGithub className="me-2" /> Sign in with Github
+        <span style={{ fontSize: "22px" }}>
+          <FaGithub />
+        </span>
+        <span style={{ marginLeft: "5px" }}>Sign in with Github</span>
       </Button>
     </div>
   );
