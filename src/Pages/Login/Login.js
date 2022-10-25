@@ -1,5 +1,5 @@
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
-import { Button, Checkbox, Label, TextInput } from "flowbite-react";
+import { Button,  Label, TextInput } from "flowbite-react";
 import React, { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";

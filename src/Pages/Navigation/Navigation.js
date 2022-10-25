@@ -1,11 +1,16 @@
 import { Avatar, Button, Navbar, Tooltip } from "flowbite-react";
 import React from "react";
+import { useState } from "react";
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../context/UserContext";
 
 const Navigation = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [toggle, setToggle] = useState(false);
+  const handleToggle = () => {
+    setToggle(!toggle);
+  };
   const handleSignOut = () => {
     logOut()
       .then((result) => {
@@ -42,22 +47,24 @@ const Navigation = () => {
           >
             {<Avatar alt="user" img={user?.photoURL} rounded={true} />}
           </Tooltip>
-          <div>
-            {user?.uid ? (
-              <Button onClick={handleSignOut} className="ms-4" color="light">
-                Sign Out
+          {/* <div> */}
+          {user?.uid ? (
+            <Button onClick={handleSignOut} className="ms-4" color="light">
+              Sign Out
+            </Button>
+          ) : (
+            <>
+              <Button className="ms-2" color="light">
+                <Link to="/login">Sign in</Link>
               </Button>
-            ) : (
-              <>
-                <Button className="ms-2" color="light">
-                  <Link to="/login">Sign in</Link>
-                </Button>
-                <Button className="ms-2" color="light">
-                  <Link to="/register">Register</Link>
-                </Button>
-              </>
-            )}
-          </div>
+              <Button className="ms-2" color="light">
+                <Link to="/register">Register</Link>
+              </Button>
+            </>
+          )}
+          <Button onClick={handleToggle} color="light">
+           {toggle ? "Light" : "Dark"}
+          </Button>
           <Navbar.Toggle />
         </div>
         <Navbar.Collapse>
