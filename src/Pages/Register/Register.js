@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const googleProvider = new GoogleAuthProvider();
 const githubProvider = new FacebookAuthProvider();
 const Register = () => {
-  const { user, popupSignIn, signUp } = useContext(AuthContext);
+  const { popupSignIn, signUp, updateUserProfile } = useContext(AuthContext);
   const googleHandleLogin = () => {
     // console.log("I am clicked");
     popupSignIn(googleProvider)
@@ -31,6 +31,16 @@ const Register = () => {
         console.error(error);
       });
   };
+  const handleUpdateUserProfile = (name, photoURL) => {
+    const profile = {
+      displayName: name,
+      photoURL: photoURL,
+    };
+
+    updateUserProfile(profile)
+      .then(() => {})
+      .catch((error) => console.error(error));
+  };
   const handleForm = (event) => {
     event.preventDefault();
     const name = event.target.name.value;
@@ -38,13 +48,11 @@ const Register = () => {
     const password = event.target.password.value;
     const photoURL = event.target.photoURL.value;
 
-    // console.log(email, password);
-    console.log(user);
-
     signUp(email, password)
       .then((result) => {
         const user = result.user;
         console.log(user);
+        handleUpdateUserProfile(name, photoURL);
       })
       .catch((error) => {
         console.error(error);
