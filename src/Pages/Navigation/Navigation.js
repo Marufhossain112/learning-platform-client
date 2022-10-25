@@ -20,7 +20,7 @@ const Navigation = () => {
       <Navbar fluid={true} rounded={true}>
         <Navbar.Brand href="/">
           <img
-            src="https://flowbite.com/docs/images/logo.svg"
+            src="https://img.icons8.com/external-wanicon-lineal-color-wanicon/2x/external-learning-online-education-wanicon-lineal-color-wanicon.png"
             className="mr-3 h-6 sm:h-9"
             alt="Flowbite Logo"
           />
@@ -40,10 +40,10 @@ const Navigation = () => {
             }
             placement="left"
           >
-            {<Avatar alt="User settings" img={user?.photoURL} rounded={true} />}
+            {<Avatar alt="user" img={user?.photoURL} rounded={true} />}
           </Tooltip>
           {user?.uid ? (
-            <Button onClick={handleSignOut} className="ms-2" color="light">
+            <Button onClick={handleSignOut} className="ms-4" color="light">
               Sign Out
             </Button>
           ) : (
