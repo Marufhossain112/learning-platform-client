@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const Login = () => {
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
-  const { popupSignIn } = useContext(AuthContext);
+  const { popupSignIn, signIn } = useContext(AuthContext);
   const googleHandleLogin = () => {
     // console.log("I am clicked");
     popupSignIn(googleProvider)
@@ -31,15 +31,30 @@ const Login = () => {
         console.error(error);
       });
   };
+  const handleForm = (event) => {
+    event.preventDefault();
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    // console.log(email, password);
+    signIn(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
   return (
     <div>
-      <form className="flex flex-col gap-4 w-1/2 mx-auto">
+      <form onSubmit={handleForm} className="flex flex-col gap-4 w-1/2 mx-auto">
         <div>
           <div className="mb-2 block">
             <Label htmlFor="email2" value="Your email" />
           </div>
           <TextInput
             id="email2"
+            name="email"
             type="email"
             placeholder="name@flowbite.com"
             required={true}
@@ -52,6 +67,7 @@ const Login = () => {
           </div>
           <TextInput
             id="password2"
+            name="password"
             type="password"
             required={true}
             shadow={true}

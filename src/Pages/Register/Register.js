@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const googleProvider = new GoogleAuthProvider();
 const githubProvider = new FacebookAuthProvider();
 const Register = () => {
-  const { popupSignIn, signUp } = useContext(AuthContext);
+  const { user, popupSignIn, signUp } = useContext(AuthContext);
   const googleHandleLogin = () => {
     // console.log("I am clicked");
     popupSignIn(googleProvider)
@@ -33,9 +33,14 @@ const Register = () => {
   };
   const handleForm = (event) => {
     event.preventDefault();
+    const name = event.target.name.value;
     const email = event.target.email.value;
     const password = event.target.password.value;
-    console.log(email, password);
+    const photoURL = event.target.photoURL.value;
+
+    // console.log(email, password);
+    console.log(user);
+
     signUp(email, password)
       .then((result) => {
         const user = result.user;
@@ -99,6 +104,19 @@ const Register = () => {
             shadow={true}
           />
         </div>
+        <div>
+          <div className="mb-2 block">
+            <Label htmlFor="photoURL" value="Enter photoURL" />
+          </div>
+          <TextInput
+            id="photoURL"
+            name="photoURL"
+            type="text"
+            required={false}
+            shadow={true}
+          />
+        </div>
+
         <div className="flex items-center gap-2">
           <Checkbox id="agree" />
           <Label htmlFor="agree">
