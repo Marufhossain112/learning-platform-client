@@ -1,14 +1,18 @@
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
-import { Button,  Label, TextInput } from "flowbite-react";
+import { Button, Label, TextInput } from "flowbite-react";
 import React, { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { AuthContext } from "../../context/UserContext";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 const Login = () => {
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
   const { popupSignIn, signIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
   const googleHandleLogin = () => {
     // console.log("I am clicked");
     popupSignIn(googleProvider)
@@ -40,6 +44,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error(error);
