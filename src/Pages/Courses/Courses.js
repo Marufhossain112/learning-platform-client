@@ -10,9 +10,12 @@ const Courses = () => {
     <div>
       <div className="courses-container">
         <div className="courses-sidebar">
-          {courses.map((course) => (
-            <p>{course.name}</p>
-          ))}
+          <b>Courses</b>
+          <div>
+            {courses.map((course) => (
+              <p>{course.name}</p>
+            ))}
+          </div>
         </div>
         <div className="courses-content">
           {courses.map((course) => (
