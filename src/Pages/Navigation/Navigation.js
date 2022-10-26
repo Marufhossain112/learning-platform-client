@@ -63,7 +63,7 @@ const Navigation = () => {
             </>
           )}
           <Button onClick={handleToggle} color="light">
-           {toggle ? "Light" : "Dark"}
+            {toggle ? "Light" : "Dark"}
           </Button>
           <Navbar.Toggle />
         </div>
@@ -71,7 +71,7 @@ const Navigation = () => {
           <NavLink as={Link} to="/" active={true}>
             Home
           </NavLink>
-          <NavLink as={Link} to="/news" active={true}>
+          <NavLink as={Link} to="/courses" active={true}>
             Courses
           </NavLink>
           <NavLink as={Link} to="/login">

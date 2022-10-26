@@ -82,7 +82,7 @@ const Register = () => {
             id="email2"
             name="email"
             type="email"
-            placeholder="name@flowbite.com"
+            placeholder="enter your email here"
             required={true}
             shadow={true}
           />
