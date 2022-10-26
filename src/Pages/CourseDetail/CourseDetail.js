@@ -1,11 +1,12 @@
 import { Button, Card } from "flowbite-react";
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const CourseDetail = () => {
   const courseDetails = useLoaderData();
   //   console.log(courseDetails);
-  const { name, headline, img, desc, price, features, heading } = courseDetails;
+  const { name, headline, img, desc, price, features, heading, id } =
+    courseDetails;
   return (
     <div className="max-w-sm mx-auto mt-5">
       <h3 className="text-2xl text-center mb-3 font-bold tracking-tight text-gray-900 dark:text-white">
@@ -21,7 +22,9 @@ const CourseDetail = () => {
             <li>{feature}</li>
           ))}
         </ul>
-        <Button gradientDuoTone="cyanToBlue">Get Premium Access</Button>
+        <Button gradientDuoTone="cyanToBlue">
+          <Link to={`/checkout/${id}`}>Get Premium Access </Link>
+        </Button>
       </Card>
     </div>
   );

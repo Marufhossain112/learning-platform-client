@@ -1,11 +1,11 @@
 import { Button, Card, Checkbox, Label, TextInput } from "flowbite-react";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 const CoursesData = ({ course }) => {
   // console.log(course);
+  const { name, img, intro, price, id } = course;
 
-  const { name, img, intro, price } = course;
   return (
     <div className="max-w-sm">
       <Card
