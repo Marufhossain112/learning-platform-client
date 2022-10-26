@@ -16,6 +16,11 @@ const CourseDetail = () => {
         <p className="font-normal text-gray-700 dark:text-gray-400">
           {desc.length > 250 ? desc.slice(0, 250) + "..." : desc}
         </p>
+        <ul style={{ listStyle: "square", marginLeft: "16px" }}>
+          {features.map((feature) => (
+            <li>{feature}</li>
+          ))}
+        </ul>
         <Button gradientDuoTone="cyanToBlue">Get Premium Access</Button>
       </Card>
     </div>
