@@ -2,8 +2,11 @@ import { Button, Card } from "flowbite-react";
 import React from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { FaFilePdf } from "react-icons/fa";
+import { createRef } from "react";
+import Pdf from "react-to-pdf";
 // import './courseDetail.css'
 
+const ref = createRef();
 const CourseDetail = () => {
   const courseDetails = useLoaderData();
   //   console.log(courseDetails);
@@ -15,7 +18,11 @@ const CourseDetail = () => {
         <h3 className="text-2xl text-center mb-3 font-bold tracking-tight text-gray-900 dark:text-white">
           {heading}
         </h3>
-        <FaFilePdf className="text-3xl mt-1"></FaFilePdf>
+        <Pdf targetRef={ref} filename="courses.pdf">
+          {({ toPdf }) => (
+            <FaFilePdf onClick={toPdf} className="text-3xl mt-1"></FaFilePdf>
+          )}
+        </Pdf>
       </div>
 
       <Card imgSrc={img}>
@@ -23,7 +30,7 @@ const CourseDetail = () => {
         <p className="font-normal text-gray-700 dark:text-gray-400">
           {desc.length > 250 ? desc.slice(0, 250) + "..." : desc}
         </p>
-        <ul style={{ listStyle: "square", marginLeft: "16px" }}>
+        <ul ref={ref} style={{ listStyle: "square", marginLeft: "16px" }}>
           {features.map((feature) => (
             <li>{feature}</li>
           ))}
