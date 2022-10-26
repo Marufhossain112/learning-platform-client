@@ -27,3 +27,23 @@
   margin-right: auto;
   padding: 20px;
 }
+
+/* implementing media query  for mobile devices*/
+
+@media only screen and (max-width: 480px) {
+  .courses-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .courses-content {
+    display: block;
+  }
+  .courses-card {
+    margin-bottom: 22px;
+  }
+  .courses-sidebar {
+    margin-top: 0px;
+    margin-left: 120px;
+    padding-bottom: 11px;
+  }
+}
