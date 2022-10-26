@@ -74,10 +74,10 @@ const Navigation = () => {
           <NavLink as={Link} to="/courses" active={true}>
             Courses
           </NavLink>
-          <NavLink as={Link} to="/login">
+          <NavLink as={Link} to="/blog">
             Blog
           </NavLink>
-          <NavLink as={Link} to="/register">
+          <NavLink as={Link} to="/faq">
             FAQ
           </NavLink>
         </Navbar.Collapse>
