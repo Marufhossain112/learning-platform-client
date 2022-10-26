@@ -1,14 +1,23 @@
 import { Button, Card, Checkbox, Label, TextInput } from "flowbite-react";
 import React from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const CoursesData = ({ course }) => {
   // console.log(course);
-  const { name, img, intro, price, id } = course;
-
+  const { img, intro, price, id } = course;
+  // const location = useLocation();
+  const navigate = useNavigate();
+  const handleCard = (event) => {
+    if (event.target) {
+      // console.log("targetted");
+      console.log(event.target);
+      navigate(`/courses-details/${id}`);
+    }
+  };
   return (
     <div className="max-w-sm">
       <Card
+        onClick={handleCard}
         imgAlt="Apple Watch Series 7 in colors pink, silver, and black"
         imgSrc={img}
       >
@@ -65,12 +74,13 @@ const CoursesData = ({ course }) => {
           <span className="text-3xl font-bold text-gray-900 dark:text-white">
             $<span>{price}</span>
           </span>
-          <a
-            href="#"
-            className="rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          <Button
+            gradientDuoTone="greenToBlue"
+            
+            className="rounded-lg bg-blue-700 px-5 py-1.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             Add to cart
-          </a>
+          </Button>
         </div>
       </Card>
     </div>
