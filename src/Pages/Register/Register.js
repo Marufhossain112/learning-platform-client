@@ -5,9 +5,11 @@ import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { AuthContext } from "../../context/UserContext";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 const googleProvider = new GoogleAuthProvider();
 const githubProvider = new FacebookAuthProvider();
 const Register = () => {
+  const [error, setError] = useState("");
   const { popupSignIn, signUp, updateUserProfile } = useContext(AuthContext);
   const googleHandleLogin = () => {
     // console.log("I am clicked");
@@ -52,10 +54,12 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        setError("");
         handleUpdateUserProfile(name, photoURL);
       })
       .catch((error) => {
         console.error(error);
+        setError(error.message);
       });
   };
   return (
@@ -137,6 +141,7 @@ const Register = () => {
             </a>
           </Label>
         </div>
+        <div className="text-red-600">{error}</div>
         <Button type="submit">Register</Button>
       </form>
       <div className="mt-3 text-center">

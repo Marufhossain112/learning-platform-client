@@ -5,7 +5,9 @@ import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { AuthContext } from "../../context/UserContext";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
 const Login = () => {
+  const [error, setError] = useState("");
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
   const { popupSignIn, signIn } = useContext(AuthContext);
@@ -44,10 +46,12 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        setError("");
         navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error(error);
+        setError(error.message);
       });
   };
   return (
@@ -78,7 +82,7 @@ const Login = () => {
             shadow={true}
           />
         </div>
-
+        <div className="text-red-600">{error}</div>
         <Button type="submit">Login</Button>
       </form>
       <div className="mt-3 text-center">
