@@ -7,3 +7,9 @@
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 22px;
 }
+.courses-content img {
+  width: 265px;
+  height: 230px;
+  margin-left: auto;
+  margin-right: auto;
+}
