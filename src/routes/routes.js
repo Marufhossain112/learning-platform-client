@@ -6,11 +6,13 @@ import Courses from "../Pages/Courses/Courses";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import ErrorPage from "../utilities/ErrorPage";
 
 export const routes = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement:<ErrorPage></ErrorPage>,
     children: [
       {
         path: "/login",
