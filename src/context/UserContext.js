@@ -18,26 +18,33 @@ export const AuthContext = createContext();
 
 const UserContext = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
   const popupSignIn = (provider) => {
+    setLoading(true);
     return signInWithPopup(auth, provider);
   };
 
   const signUp = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
   const signIn = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
   const updateUserProfile = (profile) => {
+    setLoading(true);
     return updateProfile(auth.currentUser, profile);
   };
   const logOut = () => {
+    setLoading(true);
     return signOut(auth);
   };
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setLoading(false);
       // console.log("User auth changed", currentUser);
     });
     return () => {
@@ -51,6 +58,7 @@ const UserContext = ({ children }) => {
     signUp,
     signIn,
     updateUserProfile,
+    loading,
   };
 
   return (
