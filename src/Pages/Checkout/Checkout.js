@@ -16,6 +16,7 @@ const Checkout = () => {
           <h5 className="mb-4 text-xl font-medium text-gray-500 dark:text-gray-400">
             Standard plan
           </h5>
+          <p className="font-bold text-2xl">{name}</p>
           <div className="flex items-baseline text-gray-900 dark:text-white">
             <span className="text-3xl font-semibold">$</span>
             <span className="text-5xl font-extrabold tracking-tight">
