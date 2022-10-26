@@ -1,0 +1,9 @@
+.courses-container {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+}
+.courses-content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 22px;
+}
