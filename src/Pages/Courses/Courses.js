@@ -1,5 +1,5 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import CoursesData from "../CoursesData/CoursesData";
 import "./courses.css";
 const Courses = () => {
@@ -13,7 +13,10 @@ const Courses = () => {
           <b>Courses</b>
           <div>
             {courses.map((course) => (
-              <p>{course.name}</p>
+              <p key={course.id}>
+                {" "}
+                <Link to={`/course-details/${course.id}`}> {course.name}</Link>
+              </p>
             ))}
           </div>
         </div>

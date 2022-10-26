@@ -1,5 +1,6 @@
 import { Button, Card, Checkbox, Label, TextInput } from "flowbite-react";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const CoursesData = ({ course }) => {
   console.log(course);
@@ -11,11 +12,10 @@ const CoursesData = ({ course }) => {
         imgAlt="Apple Watch Series 7 in colors pink, silver, and black"
         imgSrc={img}
       >
-        <a href="#">
-          <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-            {intro}
-          </h5>
-        </a>
+        <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
+          <Link to="/course-details">{intro} </Link>
+        </h5>
+
         <div className="mt-2.5 mb-5 flex items-center">
           <svg
             className="h-5 w-5 text-yellow-300"
