@@ -33,7 +33,7 @@ const Navigation = () => {
             Learning Hub
           </span>
         </Navbar.Brand>
-        <div className="flex md:order-2">
+        <div className="flex md:order-2 lg:space-x-3">
           <Tooltip
             content={
               <div>
@@ -49,15 +49,15 @@ const Navigation = () => {
           </Tooltip>
           {/* <div> */}
           {user?.uid ? (
-            <Button onClick={handleSignOut} className="ms-4" color="light">
+            <Button onClick={handleSignOut} color="light">
               Sign Out
             </Button>
           ) : (
             <>
-              <Button className="ms-2" color="light">
+              <Button color="light">
                 <Link to="/login">Sign in</Link>
               </Button>
-              <Button className="ms-2" color="light">
+              <Button className="register-btn" color="light">
                 <Link to="/register">Register</Link>
               </Button>
             </>
