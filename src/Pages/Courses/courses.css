@@ -30,10 +30,11 @@
 
 /* implementing media query  for mobile devices*/
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 612px) {
   .courses-container {
     display: flex;
     flex-direction: column;
+    align-items: center;
   }
   .courses-content {
     display: block;
@@ -42,8 +43,31 @@
     margin-bottom: 22px;
   }
   .courses-sidebar {
-    margin-top: 0px;
-    margin-left: 120px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+    padding-bottom: 11px;
+  }
+}
+
+/* for tablet */
+
+@media only screen and (min-width: 613px) and (max-width: 980px) {
+  .courses-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .courses-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .courses-card {
+    margin-bottom: 22px;
+  }
+  .courses-sidebar {
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
     padding-bottom: 11px;
   }
 }
