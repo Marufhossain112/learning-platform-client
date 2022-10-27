@@ -72,3 +72,13 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 # Learning-hub
 
 A Learning platform where you can learn many web technology easily.
+
+## Features
+
+- Website constains a navbar with a logo and title
+- That site has some options like Blog,Courses,FAQ
+- When user clicks on Courses , it will redirect to a new page
+- When user clicks on any card or on the sidebar options , it will go detail page.
+- From detail page user can checkout any item
+- User can login and register
+- User can toggle dark light button
