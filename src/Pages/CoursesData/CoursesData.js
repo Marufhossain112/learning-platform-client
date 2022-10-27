@@ -3,19 +3,14 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const CoursesData = ({ course }) => {
-  // console.log(course);
   const { img, intro, price, id } = course;
-  // const location = useLocation();
   const navigate = useNavigate();
   const handleCard = (event) => {
     if (event.target) {
-      // console.log("targetted");
-      console.log(event.target);
       navigate(`/courses-details/${id}`);
     }
   };
   return (
-    // <div className="max-w-sm">
     <Card
       className="courses-card"
       onClick={handleCard}

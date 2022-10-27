@@ -8,6 +8,7 @@ const PrivateRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
   const location = useLocation();
 
+  // when loading
   if (loading) {
     return (
       <div className="text-center mt-[230px]">
@@ -15,10 +16,11 @@ const PrivateRoute = ({ children }) => {
       </div>
     );
   }
-
+// if there is no user
   if (!user) {
     return <Navigate to="/login" state={{ from: location }} replace></Navigate>;
   }
+  // if any user found
   return children;
 };
 

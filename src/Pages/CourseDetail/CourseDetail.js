@@ -4,14 +4,11 @@ import { Link, useLoaderData } from "react-router-dom";
 import { FaFilePdf } from "react-icons/fa";
 import { createRef } from "react";
 import Pdf from "react-to-pdf";
-// import './courseDetail.css'
 
 const ref = createRef();
 const CourseDetail = () => {
   const courseDetails = useLoaderData();
-  //   console.log(courseDetails);
-  const { name, headline, img, desc, price, features, heading, id } =
-    courseDetails;
+  const { name, img, desc, features, heading, id } = courseDetails;
   return (
     <div className="max-w-sm mx-auto mt-5">
       <div className="flex">

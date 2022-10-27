@@ -16,43 +16,38 @@ const Login = () => {
   const from = location.state?.from?.pathname || "/";
 
   const googleHandleLogin = () => {
-    // console.log("I am clicked");
     popupSignIn(googleProvider)
       .then((result) => {
         const user = result.user;
-        console.log(user);
-        navigate(from, { replace: true });
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-  const githubHandleLogin = () => {
-    // console.log("I am clicked");
-    popupSignIn(githubProvider)
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-        navigate(from, { replace: true });
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-  const handleForm = (event) => {
-    event.preventDefault();
-    const email = event.target.email.value;
-    const password = event.target.password.value;
-    // console.log(email, password);
-    signIn(email, password)
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
         setError("");
         navigate(from, { replace: true });
       })
       .catch((error) => {
-        console.error(error);
+        setError(error.message);
+      });
+  };
+  const githubHandleLogin = () => {
+    popupSignIn(githubProvider)
+      .then((result) => {
+        const user = result.user;
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  };
+  const handleForm = (event) => {
+    // prevent from reloading
+    event.preventDefault();
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    signIn(email, password)
+      .then((result) => {
+        const user = result.user;
+        setError("");
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
         setError(error.message);
       });
   };

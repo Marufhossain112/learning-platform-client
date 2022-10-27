@@ -5,12 +5,12 @@ import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../context/UserContext";
 
 const Checkout = () => {
+  // load user data
   const checkoutCourses = useLoaderData();
-  const { user } = useContext(AuthContext);
-  // console.log(user);
-  const { displayName, email } = user;
-  // console.log(checkoutCourses);
   const { name, price, features } = checkoutCourses;
+  // destructure user from context
+  const { user } = useContext(AuthContext);
+  const { displayName, email } = user;
   return (
     <div>
       <h2 className="text-center my-6 text-3xl font-bold underline">

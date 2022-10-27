@@ -12,14 +12,13 @@ const Register = () => {
   const [error, setError] = useState("");
   const { popupSignIn, signUp, updateUserProfile } = useContext(AuthContext);
   const googleHandleLogin = () => {
-    // console.log("I am clicked");
     popupSignIn(googleProvider)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        setError("");
       })
       .catch((error) => {
-        console.error(error);
+        setError(error.message);
       });
   };
   const githubHandleLogin = () => {
@@ -27,10 +26,10 @@ const Register = () => {
     popupSignIn(githubProvider)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        setError("");
       })
       .catch((error) => {
-        console.error(error);
+        setError(error.message);
       });
   };
   const handleUpdateUserProfile = (name, photoURL) => {
@@ -41,7 +40,7 @@ const Register = () => {
 
     updateUserProfile(profile)
       .then(() => {})
-      .catch((error) => console.error(error));
+      .catch((error) => setError(error.message));
   };
   const handleForm = (event) => {
     event.preventDefault();
@@ -53,12 +52,10 @@ const Register = () => {
     signUp(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
         setError("");
         handleUpdateUserProfile(name, photoURL);
       })
       .catch((error) => {
-        console.error(error);
         setError(error.message);
       });
   };
