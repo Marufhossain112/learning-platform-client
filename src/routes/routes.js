@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../layouts/Main";
 import Blog from "../Pages/Blog/Blog";
+import Carousels from "../Pages/Carousel/Carousels";
 import Checkout from "../Pages/Checkout/Checkout";
 import CourseDetail from "../Pages/CourseDetail/CourseDetail";
 import Courses from "../Pages/Courses/Courses";
@@ -15,6 +16,10 @@ export const routes = createBrowserRouter([
     element: <Main></Main>,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
+      {
+        path: "/",
+        element: <Carousels></Carousels>,
+      },
       {
         path: "/login",
         element: <Login></Login>,
