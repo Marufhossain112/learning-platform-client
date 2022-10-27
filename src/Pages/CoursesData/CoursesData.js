@@ -1,6 +1,7 @@
 import { Button, Card, Checkbox, Label, TextInput } from "flowbite-react";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import "./CourseData.css";
 
 const CoursesData = ({ course }) => {
   const { img, intro, price, id } = course;
@@ -11,7 +12,7 @@ const CoursesData = ({ course }) => {
     }
   };
   return (
-    <div className="max-w-sm">
+    <div className="max-w-sm coursesCard">
       <Card
         onClick={handleCard}
         imgAlt="Apple Watch Series 7 in colors pink, silver, and black"

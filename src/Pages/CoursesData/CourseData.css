@@ -1,0 +1,5 @@
+@media only screen and (min-width: 400px) and (max-width: 612px) {
+  .coursesCard {
+    margin: 30px 0;
+  }
+}
