@@ -1,6 +1,6 @@
 # Learning-hub
 
-Live site link - https://auth-router-context-3dfed.web.app/
+Live site link - https://learning-hub-site.netlify.app/
 
 ## Features
 
