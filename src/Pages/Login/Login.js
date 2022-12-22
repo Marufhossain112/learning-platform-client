@@ -6,8 +6,17 @@ import { FaGithub } from "react-icons/fa";
 import { AuthContext } from "../../context/UserContext";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 const Login = () => {
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    reset,
+  } = useForm();
   const [error, setError] = useState("");
+  const [loginError, setLoginError] = useState("");
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
   const { popupSignIn, signIn } = useContext(AuthContext);
@@ -36,24 +45,28 @@ const Login = () => {
         setError(error.message);
       });
   };
-  const handleForm = (event) => {
+  const handleForm = (data) => {
     // prevent from reloading
-    event.preventDefault();
-    const email = event.target.email.value;
-    const password = event.target.password.value;
-    signIn(email, password)
+    setLoginError("");
+    signIn(data.email, data.password)
       .then((result) => {
         const user = result.user;
         setError("");
+        toast.success("User Login Success");
+        reset();
         navigate(from, { replace: true });
       })
       .catch((error) => {
         setError(error.message);
+        setLoginError(error.message);
       });
   };
   return (
     <div>
-      <form onSubmit={handleForm} className="flex flex-col gap-4 w-1/2 mx-auto">
+      <form
+        onSubmit={handleSubmit(handleForm)}
+        className="flex flex-col gap-4 w-1/2 mx-auto"
+      >
         <div>
           <div className="mb-2 block">
             <Label htmlFor="email2" value="Your email" />
@@ -63,9 +76,15 @@ const Login = () => {
             name="email"
             type="email"
             placeholder="enter your email"
-            required={true}
+            // required={true}
             shadow={true}
+            {...register("email", {
+              required: "Email Address is required",
+            })}
           />
+          {errors.email && (
+            <p className="text-red-600">{errors.email?.message}</p>
+          )}
         </div>
         <div>
           <div className="mb-2 block">
@@ -75,11 +94,21 @@ const Login = () => {
             id="password2"
             name="password"
             type="password"
-            required={true}
+            // required={true}
             shadow={true}
+            {...register("password", {
+              required: "Password is required",
+              minLength: {
+                value: 6,
+                message: "Password must be 6 characters or longer",
+              },
+            })}
           />
-        </div>
-        <div className="text-red-600">{error}</div>
+          {errors.password && (
+            <p className="text-red-600">{errors.password?.message}</p>
+          )}
+        </div>{" "}
+        <div>{loginError && <p className="text-red-600">{loginError}</p>}</div>
         <Button type="submit">Login</Button>
       </form>
       <div className="mt-3 text-center">

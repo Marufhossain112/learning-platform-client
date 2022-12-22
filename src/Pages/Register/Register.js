@@ -6,10 +6,20 @@ import { FaGithub } from "react-icons/fa";
 import { AuthContext } from "../../context/UserContext";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
+
 const googleProvider = new GoogleAuthProvider();
 const githubProvider = new FacebookAuthProvider();
 const Register = () => {
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    reset,
+  } = useForm();
   const [error, setError] = useState("");
+  const [signUpError, setSignUPError] = useState("");
   const { popupSignIn, signUp, updateUserProfile } = useContext(AuthContext);
   const googleHandleLogin = () => {
     popupSignIn(googleProvider)
@@ -42,26 +52,26 @@ const Register = () => {
       .then(() => {})
       .catch((error) => setError(error.message));
   };
-  const handleForm = (event) => {
-    event.preventDefault();
-    const name = event.target.name.value;
-    const email = event.target.email.value;
-    const password = event.target.password.value;
-    const photoURL = event.target.photoURL.value;
-
-    signUp(email, password)
+  const handleForm = (data) => {
+    setSignUPError("");
+    signUp(data.email, data.password)
       .then((result) => {
         const user = result.user;
         setError("");
-        handleUpdateUserProfile(name, photoURL);
+        reset();
+        handleUpdateUserProfile(data.name, data.photoURL);
       })
       .catch((error) => {
         setError(error.message);
+        setSignUPError(error.message);
       });
   };
   return (
     <div>
-      <form onSubmit={handleForm} className="flex flex-col gap-4 w-1/2 mx-auto">
+      <form
+        onSubmit={handleSubmit(handleForm)}
+        className="flex flex-col gap-4 w-1/2 mx-auto"
+      >
         <div>
           <div className="mb-2 block">
             <Label htmlFor="name2" value="Your Fullname" />
@@ -71,9 +81,12 @@ const Register = () => {
             name="name"
             type="text"
             placeholder="Your name"
-            required={true}
             shadow={true}
+            {...register("name", {
+              required: "Name is Required",
+            })}
           />
+          {errors.name && <p className="text-red-500">{errors.name.message}</p>}
         </div>
         <div>
           <div className="mb-2 block">
@@ -84,9 +97,14 @@ const Register = () => {
             name="email"
             type="email"
             placeholder="enter your email here"
-            required={true}
             shadow={true}
+            {...register("email", {
+              required: "Email is required",
+            })}
           />
+          {errors.email && (
+            <p className="text-red-500">{errors.email.message}</p>
+          )}
         </div>
 
         <div>
@@ -97,9 +115,23 @@ const Register = () => {
             id="password2"
             name="password"
             type="password"
-            required={true}
             shadow={true}
+            {...register("password", {
+              required: "Password is required",
+              minLength: {
+                value: 6,
+                message: "Password must be 6 characters long",
+              },
+              pattern: {
+                value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/,
+                message:
+                  "Password must have uppercase, number and special characters",
+              },
+            })}
           />
+          {errors.password && (
+            <p className="text-red-500">{errors.password.message}</p>
+          )}
         </div>
         <div>
           <div className="mb-2 block">
@@ -109,9 +141,23 @@ const Register = () => {
             id="repeat-password"
             name="repeat-password"
             type="password"
-            required={true}
             shadow={true}
+            {...register("password", {
+              required: "Password is required",
+              minLength: {
+                value: 6,
+                message: "Password must be 6 characters long",
+              },
+              pattern: {
+                value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/,
+                message:
+                  "Password must have uppercase, number and special characters",
+              },
+            })}
           />
+          {errors.password && (
+            <p className="text-red-500">{errors.password.message}</p>
+          )}
         </div>
         <div>
           <div className="mb-2 block">
@@ -123,6 +169,7 @@ const Register = () => {
             type="text"
             required={false}
             shadow={true}
+            {...register("photoURL")}
           />
         </div>
 
@@ -138,7 +185,7 @@ const Register = () => {
             </a>
           </Label>
         </div>
-        <div className="text-red-600">{error}</div>
+        {signUpError && <p className="text-red-600">{signUpError}</p>}
         <Button type="submit">Register</Button>
       </form>
       <div className="mt-3 text-center">
@@ -174,5 +221,4 @@ const Register = () => {
     </div>
   );
 };
-
 export default Register;
